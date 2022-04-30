@@ -1,7 +1,7 @@
 searchnaf
 ========
 
-![example workflow](https://github.com/pcavezzan/searchnaf/actions/workflows/build.yml/badge.svg)
+![badge](https://github.com/pcavezzan/searchnaf/actions/workflows/build.yml/badge.svg)
 
 Petit utilitaire permettant de récupérer le code naf (activité principal) associée à l'établissement (SIRET) ciblé.
 
