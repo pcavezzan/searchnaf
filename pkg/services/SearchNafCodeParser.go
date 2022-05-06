@@ -6,6 +6,7 @@ import (
 	"github.com/gocarina/gocsv"
 	"io"
 	"os"
+	"strings"
 )
 
 type SearchNafCodeParser interface {
@@ -64,7 +65,13 @@ func (c *csvFileSiretParser) Parse() ([]string, error) {
 
 	var searchNafCodeApi []string
 	for _, content := range inputCsvContent {
-		searchNafCodeApi = append(searchNafCodeApi, content.Siret)
+		if hasSirenNumber(content.Siret) {
+			searchNafCodeApi = append(searchNafCodeApi, content.Siret)
+		}
 	}
 	return searchNafCodeApi, nil
+}
+
+func hasSirenNumber(siret string) bool {
+	return len(siret) > 0 && !strings.EqualFold(siret, "?")
 }

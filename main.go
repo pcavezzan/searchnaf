@@ -70,12 +70,16 @@ func main() {
 	service := services.HttpSiretService{}
 	var agencies []services.Agency
 	for _, siret := range searchesNafCodeApi {
+		if verbose {
+			fmt.Printf("Getting agency %s from data.gouv.fr\n", siret)
+		}
 		agency, err := service.GetAgency(siret)
 		if err != nil {
 			log.Fatalln(err)
 		}
 		agencies = append(agencies, agency)
 		if verbose {
+			fmt.Printf("Got naf code %s for agency %s of company %s from data.gouv.fr\n", agency.Naf, agency.Code, agency.CodeCompany)
 			fmt.Printf("Sleep %d seconds for temporise api call from data.gouv.fr.\n", apiTemporisationInSeconds)
 		}
 		time.Sleep(apiTemporisation)
